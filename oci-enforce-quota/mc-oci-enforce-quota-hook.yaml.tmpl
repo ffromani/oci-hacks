@@ -1,0 +1,22 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: mc-oci-enforce-quota-hook
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    storage:
+      files:
+      - contents:
+          source: data:text/plain;charset=utf-8;base64,${HOOK_CONTENT}
+        mode: 448
+        overwrite: true
+        path: /usr/local/bin/oci-enforce-quota-hook.sh
+      - contents:
+          source: data:text/plain;charset=utf-8;base64,${CONF_CONTENT}
+        mode: 420
+        overwrite: true
+        path: /etc/containers/oci/hooks.d/99-enforce-quota.json

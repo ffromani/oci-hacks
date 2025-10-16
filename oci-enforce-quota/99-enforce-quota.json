@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "hook": {
+    "path": "/usr/local/bin/oci-enforce-quota-hook.sh",
+    "args": ["oci-enforce-quota-hook.sh"],
+    "timeout": 10
+  },
+  "when": {
+    "always": true
+  },
+  "stages": ["prestart"]
+}
