@@ -37,12 +37,7 @@ if [ -z "$container_state" ]; then
     exit 0
 fi
 
-should_enforce=$(echo "$container_state" | jq -r '.annotations."openshift-kni.io/enforce-cpu-quota" // "false"')
 container_id_short=$(echo "$container_state" | jq -r '.id | .[0:12]') # Short ID for cleaner logs
-
-if [ "$should_enforce" != "true" ]; then
-    exit 0
-fi
 
 log_info "Container ${container_id_short}: Activation annotation found. Evaluating CPU quota."
 

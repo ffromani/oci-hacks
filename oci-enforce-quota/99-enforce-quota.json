@@ -6,7 +6,9 @@
     "timeout": 10
   },
   "when": {
-    "always": true
+    "annotations": {
+      "^openshift-kni\\.io/enforce-cpu-quota$": "^true$"
+    }
   },
   "stages": ["prestart"]
 }
